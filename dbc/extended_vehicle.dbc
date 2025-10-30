@@ -1,0 +1,98 @@
+VERSION "1.0"
+
+NS_ :
+    NS_DESC_
+    CM_
+    BA_DEF_
+    BA_
+    VAL_
+    BU_SG_REL_
+
+BS_:
+
+BU_: ECU1 ECU2 XXX
+
+BO_ 100 Vehicle_Speed_Front: 8 XXX
+ SG_ Speed_WheelFL : 0|16@1+ (0.01,0) [0|250] "km/h" XXX
+ SG_ Speed_WheelFR : 16|16@1+ (0.01,0) [0|250] "km/h" XXX
+
+BO_ 101 Vehicle_Speed_Rear: 8 XXX
+ SG_ Speed_WheelRL : 0|16@1+ (0.01,0) [0|250] "km/h" XXX
+ SG_ Speed_WheelRR : 16|16@1+ (0.01,0) [0|250] "km/h" XXX
+
+BO_ 200 Engine_Status: 8 XXX
+ SG_ Engine_RPM         : 0|16@1+ (0.25,0) [0|16000] "rpm" XXX
+ SG_ Throttle_Position  : 16|8@1+ (0.4,0) [0|100] "%" XXX
+ SG_ Engine_Temp        : 24|8@1+ (1,-40) [-40|215] "°C" XXX
+ SG_ Oil_Pressure       : 32|8@1+ (0.1,0) [0|255] "kPa" XXX
+ SG_ Fuel_Level         : 40|8@1+ (0.4,0) [0|100] "%" XXX
+
+VAL_ 200 Engine_Failure 0 "ok" 1 "fault" ;
+
+BO_ 120 Steering_Info: 8 XXX
+ SG_ Steering_Angle : 0|16@1+ (0.1,-720) [-720|720] "deg" XXX
+ SG_ Steering_Torque : 16|8@1+ (0.1,-12.8) [-12.8|12.7] "Nm" XXX
+ SG_ Steering_Status : 24|2@1+ (1,0) [0|3] "" XXX
+ SG_ SAPPAngleControlStat : 26|6@1+ (1,0) [0|63] "" XXX
+
+VAL_ 120 Steering_Status 0 "ok" 1 "warning" 2 "error" 3 "fault" ;
+
+BO_ 130 Brake_Info: 8 XXX
+ SG_ Brake_Pressure_FL : 0|10@1+ (0.1,0) [0|102.3] "bar" XXX
+ SG_ Brake_Pressure_FR : 10|10@1+ (0.1,0) [0|102.3] "bar" XXX
+ SG_ Brake_Pressure_RL : 20|10@1+ (0.1,0) [0|102.3] "bar" XXX
+ SG_ Brake_Pressure_RR : 30|10@1+ (0.1,0) [0|102.3] "bar" XXX
+ SG_ Brake_Pedal_Pos : 40|8@1+ (0.4,0) [0|100] "%" XXX
+ SG_ ABS_Active : 48|1@1+ (1,0) [0|1] "" XXX
+
+VAL_ 130 ABS_Active 0 "off" 1 "on" ;
+
+BO_ 140 Cruise_Control: 8 XXX
+ SG_ Cruise_Active : 0|1@1+ (1,0) [0|1] "" XXX
+ SG_ Cruise_Speed : 8|8@1+ (1,0) [0|200] "km/h" XXX
+ SG_ Cruise_Mode : 16|2@1+ (1,0) [0|3] "" XXX
+
+VAL_ 140 Cruise_Mode 0 "off" 1 "standby" 2 "active" 3 "error" ;
+
+BO_ 150 Doors_Info: 8 XXX
+ SG_ Door_FL_Open : 0|1@1+ (1,0) [0|1] "" XXX
+ SG_ Door_FR_Open : 1|1@1+ (1,0) [0|1] "" XXX
+ SG_ Door_RL_Open : 2|1@1+ (1,0) [0|1] "" XXX
+ SG_ Door_RR_Open : 3|1@1+ (1,0) [0|1] "" XXX
+ SG_ Hood_Open : 4|1@1+ (1,0) [0|1] "" XXX
+ SG_ Trunk_Open : 5|1@1+ (1,0) [0|1] "" XXX
+ SG_ Brake_Lights : 6|1@1+ (1,0) [0|1] "" XXX
+
+VAL_ 150 Door_FL_Open 0 "closed" 1 "open" ;
+VAL_ 150 Door_FR_Open 0 "closed" 1 "open" ;
+VAL_ 150 Door_RL_Open 0 "closed" 1 "open" ;
+VAL_ 150 Door_RR_Open 0 "closed" 1 "open" ;
+VAL_ 150 Hood_Open 0 "closed" 1 "open" ;
+VAL_ 150 Trunk_Open 0 "closed" 1 "open" ;
+VAL_ 150 Brake_Lights 0 "off" 1 "on" ;
+
+BO_ 160 Yaw_Accel: 8 XXX
+ SG_ VehYaw_W_Actl : 0|16@1+ (0.0002,-6.5) [-6.5|6.5] "rad/s" XXX
+ SG_ VehRol_W_Actl : 16|16@1+ (0.0002,-6.5) [-6.5|6.5] "rad/s" XXX
+ SG_ VehPtch_W_Actl : 32|16@1+ (0.0002,-6.5) [-6.5|6.5] "rad/s" XXX
+ SG_ VehLong_A_Actl : 48|8@1+ (0.01,-40) [-40|40] "m/s^2" XXX
+ SG_ VehLat_A_Actl : 56|8@1+ (0.01,-40) [-40|40] "m/s^2" XXX
+
+BO_ 170 Lane_Keep_Assist: 8 XXX
+ SG_ Lkas_Action : 0|4@1+ (1,0) [0|15] "" XXX
+ SG_ Lkas_Alert : 4|4@1+ (1,0) [0|15] "" XXX
+ SG_ Lane_Curvature : 8|12@1+ (5e-6,-0.01) [-0.01|0.01] "1/m" XXX
+ SG_ Steer_Angle_Req : 20|12@1+ (0.04297,-88.00445) [-88|88] "deg" XXX
+
+VAL_ 170 Lkas_Action 15 "off" 9 "abrupt" 8 "abrupt2" 5 "smooth" 4 "smooth2" ;
+VAL_ 170 Lkas_Alert 15 "no_alert" 3 "high_intensity" 2 "mid_intensity" 1 "low_intensity" ;
+
+BO_ 180 Steering_Buttons: 8 XXX
+ SG_ Right_Turn_Light : 0|1@1+ (1,0) [0|1] "" XXX
+ SG_ Left_Turn_Light : 1|1@1+ (1,0) [0|1] "" XXX
+ SG_ Dist_Decr : 2|1@1+ (1,0) [0|1] "" XXX
+ SG_ Dist_Incr : 3|1@1+ (1,0) [0|1] "" XXX
+ SG_ Cancel : 4|1@1+ (1,0) [0|1] "" XXX
+ SG_ Resume : 5|1@1+ (1,0) [0|1] "" XXX
+ SG_ Set : 6|1@1+ (1,0) [0|1] "" XXX
+ SG_ Main : 7|1@1+ (1,0) [0|1] "" XXX
